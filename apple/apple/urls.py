@@ -19,6 +19,11 @@ from django.conf.urls import url
 from django.views import generic
 from rest_framework.schemas import get_schema_view
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
+from rest_framework.routers import DefaultRouter
+from backend.views import ActivateUser, CreateUserView, UserViewSet
+
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +32,11 @@ urlpatterns = [
     url(r'^auth/api/token/obtain/', obtain_jwt_token),
     url(r'^auth/api/token/refresh/', refresh_jwt_token),
     url(r'^auth/api/token/verify/', verify_jwt_token),
+    url('^auth/api/register/$', CreateUserView.as_view()),
+    url(
+        '^auth/api/activate/(?P<token>.+?)/$',
+        ActivateUser.as_view(),
+        name='activate-user'
+    ),
 
 ]

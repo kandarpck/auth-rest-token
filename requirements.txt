@@ -1,3 +1,4 @@
 django
 djangorestframework-jwt
 rest_framework
+jwt
