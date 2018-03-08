@@ -16,11 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
-
+from django.views import generic
+from rest_framework.schemas import get_schema_view
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^$', generic.RedirectView.as_view(url='/auth/api/', permanent=False)),
+    url(r'^auth/api/$', get_schema_view()),
     url(r'^auth/api/token/obtain/', obtain_jwt_token),
     url(r'^auth/api/token/refresh/', refresh_jwt_token),
     url(r'^auth/api/token/verify/', verify_jwt_token),
