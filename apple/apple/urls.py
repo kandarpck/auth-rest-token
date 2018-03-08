@@ -22,7 +22,7 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^auth/api/token/obtain/', obtain_jwt_token),
-    url(r'auth/api/token/refresh/', refresh_jwt_token),
-    url(r'auth/api/token/verify/', verify_jwt_token),
+    url(r'^auth/api/token/refresh/', refresh_jwt_token),
+    url(r'^auth/api/token/verify/', verify_jwt_token),
 
 ]
